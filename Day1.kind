@@ -1,0 +1,21 @@
+Day1.solution(l: List<Nat>): Nat
+  case l {
+    nil:
+      0
+    cons:
+      case l.tail {
+        nil:
+          0
+        cons:
+          let comp = Nat.ltn(l.head, l.tail.head)
+          case comp {
+            true:
+              1 + Day1.solution(l.tail)
+            false:
+              Day1.solution(l.tail)
+          }
+      }
+  }
+
+Day1: Nat
+  Day1.solution(Day1.input)
